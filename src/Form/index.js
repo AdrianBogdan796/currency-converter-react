@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./style.css"
-import currencies from "../currencies";
+import { currencies } from "../currencies";
 
 const Form = ({ result, calculateResult}) => {
     const [currency, setCurrency] = useState(currencies[0])
@@ -31,14 +31,14 @@ const Form = ({ result, calculateResult}) => {
                 </select>
             </label>
             <label>
-                <span className="form__result">podaj PLN:</span>
-                <input
+                <input                 
+                    className="form__result"
+                    placeholder="podaj PLN"
                     value={amount}
                     onChange={({ target }) => setAmount(target.value)}
-                    className="form__fiield"
                     type="number"
                     name="amount"
-                    step="any"
+                    step="0.5"
                     min="1"
                     required
                 />
