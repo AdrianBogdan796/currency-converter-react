@@ -1,0 +1,60 @@
+.form__currency {
+    width: 100%;
+    max-width: 150px;
+    display: inline-block;
+    margin: auto;
+}
+
+.form__result {
+    margin: auto;
+    border: 1px solid red;
+    width: 200px;
+    display: inline-block;
+    padding: 10px 10px 15px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 200;
+    color: aquamarine;
+    background-color: black;
+    box-shadow: 6px 7px 5px 0px gray;
+    border-radius: 5px;
+}
+
+.form__field {
+    border: 1px solid #ccc;
+    border-color: rgb(48, 177, 39);
+    padding: 10px;
+    width: 100%;
+    max-width: 260px;
+    border-radius: 5px;
+    margin-left: auto;
+}
+
+.form__fieldset {
+    border: 1px solid #777;
+    padding: 25px;
+    border-radius: 5px;
+    margin: 25px 0;
+}
+
+.form__legend {
+    position: absolute;
+    transform: translate(-50%, 50%);
+    top: 0;
+    left: 50%;
+    background-color: rgb(93, 162, 61);
+    color: black;
+    border: 1px black;
+    padding: 10px;
+    letter-spacing: 2px;
+    border-radius: 5px;
+}
+
+.form__button {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    padding: 10px;
+    margin: 20px auto;
+    cursor: pointer;
+}
