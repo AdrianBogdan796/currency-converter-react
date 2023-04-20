@@ -11,7 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Demo
 
-https://github.com/DeuxEx12/currency-converter-react.git
+https://deuxex12.github.io/currency-converter-react/
 ![Zdjęcie](https://i.postimg.cc/TPCDtzvT/Zrzut-ekranu-2023-04-20-150301.png)
 
 ## Available Scripts
