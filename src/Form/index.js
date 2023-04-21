@@ -2,6 +2,17 @@ import { useState } from "react";
 import "./style.css"
 import { currencies } from "../currencies";
 
+const [result, setResult] = useState(null);
+
+  const calculateResult = (amount, currency) => {
+      const rate = currency?.ratio;
+      setResult({
+          sourceAmount: +amount,
+          targetAmount: +amount / rate,
+          currency
+      });
+  };
+
 const Form = ({ result, calculateResult}) => {
     const [currency, setCurrency] = useState(currencies[0])
     const [amount, setAmount] = useState("");
