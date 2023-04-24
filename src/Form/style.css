@@ -8,7 +8,7 @@
 .form__result {
   margin: auto;
   border: 1px solid red;
-  width: auto;
+  width: 200px;
   display: inline-block;
   padding: 10px 10px 15px;
   text-align: center;
