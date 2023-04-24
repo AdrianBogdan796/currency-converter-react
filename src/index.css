@@ -2,13 +2,14 @@ html {
   box-sizing: border-box;
 }
 
-::after, ::before {
+::after,
+::before {
   box-sizing: inherit;
 }
 
-body {
+div {
   width: 500px;
-  height: 354px;
+  height: auto;
   margin: auto;
   background-image: url("../images/istockphoto-157308559-612x612.jpg");
   background-size: 500px;

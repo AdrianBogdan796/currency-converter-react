@@ -4,13 +4,23 @@ import Header from "./Header";
 import { useState } from "react";
 
 function App() {
+  const [result, setResult] = useState(null);
+
+  const calculateResult = (amount, currency) => {
+    const rate = currency?.ratio;
+    setResult({
+      sourceAmount: +amount,
+      targetAmount: +amount / rate,
+      currency,
+    });
+  };
 
   return (
     <Conteiner>
-    <Header />
-    <main>
+      <Header />
+      <main>
         <Form result={result} calculateResult={calculateResult} />
-   </main>
+      </main>
     </Conteiner>
   );
 }
