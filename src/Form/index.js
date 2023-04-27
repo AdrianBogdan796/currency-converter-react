@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./style.css";
 import { currencies } from "../currencies";
+import Clock from "./Clock";
 
 const Form = ({ result, calculateResult }) => {
   const [currency, setCurrency] = useState(currencies[0]);
@@ -19,6 +20,7 @@ const Form = ({ result, calculateResult }) => {
 
   return (
     <form onSubmit={onFormSubmit}>
+      <Clock />
       <label>
         <span className="form__legend">Kalkulator walut</span>
         <select
