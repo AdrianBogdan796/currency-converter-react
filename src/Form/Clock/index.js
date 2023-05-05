@@ -1,4 +1,4 @@
-import "./style.css";
+import { StyledClock } from "./styled";
 import { useCurrentDate } from "./useCurrentDate";
 
 const formatDate = (date) =>
@@ -11,8 +11,10 @@ const formatDate = (date) =>
     second: "2-digit",
   });
 
-export const Clock = () => {
+const Clock = () => {
   const date = useCurrentDate();
 
-  return <div className="clock">Dzisiaj jest {formatDate(date)}</div>;
+  return <StyledClock>Dzisiaj jest {formatDate(date)}</StyledClock>;
 };
+
+export default Clock;
