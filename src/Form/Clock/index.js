@@ -1,20 +1,17 @@
 import { StyledClock } from "./styled";
 import { useCurrentDate } from "./useCurrentDate";
 
-const formatDate = (date) =>
-  date.toLocaleDateString(undefined, {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  });
-
-const Clock = () => {
-  const date = useCurrentDate();
-
-  return <StyledClock>Dzisiaj jest {formatDate(date)}</StyledClock>;
+const DATE_FORMAT_OPTIONS = {
+  weekday: "long",
+  day: "2-digit",
+  month: "short",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
 };
 
-export default Clock;
+export const Clock = () => {
+  const date = useCurrentDate(DATE_FORMAT_OPTIONS);
+
+  return <StyledClock>Dziś jest {date}</StyledClock>;
+};
