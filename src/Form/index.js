@@ -20,13 +20,14 @@ export const Form = () => {
   const [currency, setCurrency] = useState("CHF");
   const [result, setResult] = useState("");
 
-  const calcResult = (amount, currency) => {
+  const calcResult = (amount, currency, targetAmount) => {
     const cost = data.jsonData.rates[currency];
 
     setResult({
       fromAmount: +amount,
       currency,
       toAmount: cost * amount,
+      targetAmount,
     });
   };
 
