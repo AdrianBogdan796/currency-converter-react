@@ -10,7 +10,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledForm = styled.form`
-  margin: auto 8px;
+  margin: auto 0px;
 `;
 
 const StyledLegend = styled.legend`
@@ -39,6 +39,17 @@ const StyledInput = styled.input`
   width: 200px;
 `;
 
+const StyledOutput = styled.div`
+  margin-top: 20px;
+`;
+
+const Select = styled.select`
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+`;
+
 const StyledButton = styled.button`
   border: 1px solid #ccc;
   border-color: rgb(48, 177, 39);
@@ -49,15 +60,11 @@ const StyledButton = styled.button`
   margin-left: auto;
 `;
 
-const Link = styled.a`
-  text-decoration: none;
-  color: black;
-`;
-
-const StyledLabel = styled.label`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+const Information = styled.div`
+  font-size: 17px;
+  font-style: italic;
+  text-align: center;
+  margin: 0;
 `;
 
 const Loading = styled.div`
@@ -72,13 +79,14 @@ const Error = styled(Loading)`
 `;
 
 export {
-  Loading,
-  Error,
   StyledContainer,
   StyledForm,
   StyledLegend,
   StyledInput,
+  StyledOutput,
+  Select,
   StyledButton,
-  Link,
-  StyledLabel,
+  Information,
+  Error,
+  Loading,
 };

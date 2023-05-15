@@ -8,9 +8,10 @@ html {
 }
 
 div {
-  width: 500px;
-  height: auto;
+  max-width: 450px;
+  max-height: 450px;
   margin: auto;
   background-image: url("../images/istockphoto-157308559-612x612.jpg");
-  background-size: 500px;
+  background-size: 450px;
+  top: 0;
 }

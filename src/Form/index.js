@@ -1,109 +1,90 @@
-import { Result } from "./Result";
 import { useState } from "react";
+import { Result } from "./Result";
 import { Clock } from "./Clock";
+import { useRatesData } from "./useRatesData";
+import { useResult } from "./useResult";
 import {
   StyledContainer,
   StyledForm,
   StyledLegend,
   StyledInput,
+  StyledOutput,
+  Select,
   StyledButton,
-  Link,
-  StyledLabel,
-  Loading,
+  Information,
   Error,
+  Loading,
 } from "./styled";
-import { useRates } from "./useRates";
+
+const StyledInput_MAX_LENGTH = 14;
 
 export const Form = () => {
-  const data = useRates();
-  const [amount, setAmount] = useState("");
-  const [currency, setCurrency] = useState("CHF");
-  const [result, setResult] = useState("");
+  const [StyledInputCurrency, setStyledInputCurrency] = useState("EUR");
+  const [outputCurrency, setOutputCurrency] = useState("EUR");
+  const [amount, setAmount] = useState();
 
-  const calcResult = (amount, currency, targetAmount) => {
-    const cost = data.jsonData.rates[currency];
-
-    setResult({
-      fromAmount: +amount,
-      currency,
-      toAmount: cost * amount,
-      targetAmount,
-    });
-  };
+  const ratesData = useRatesData();
+  const { calculateResult, result } = useResult();
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    calcResult(amount, currency);
-    setAmount("");
+
+    calculateResult(ratesData, StyledInputCurrency, outputCurrency, amount);
   };
 
   return (
-    <StyledContainer>
-      {data.loading === "waiting" ? (
-        <Loading>
-          "Witam. <b>Pobieramy dane z api Europejskiego Banku Centralnego</b>
-          Proszę poczekać chwilę.
-        </Loading>
-      ) : data.loading === "failed" ? (
-        <Error>
-          Przępraszamy. Coś poszło nie tak. Proszę sprawdzić, czy jest
-          połączenie z siecią, jeśli tak to błąd leży po naszej stronie
-          przepraszamy.
-        </Error>
-      ) : (
-        <>
-          <Clock />
-          <StyledForm onSubmit={onFormSubmit}>
-            <StyledLegend>Kalkulator Walut</StyledLegend>
-            <p>
-              <StyledLabel>
-                <StyledInput
-                  type="number"
-                  min="0.01"
-                  step="any"
-                  name="amount"
-                  required
-                  placeholder="PLN"
-                  max="9999999999999"
-                  value={amount}
-                  onChange={({ target }) => setAmount(target.value)}
-                />
-              </StyledLabel>
-            </p>
-            <p>
-              <StyledLabel>
-                <StyledInput
-                  onChange={({ target }) => setCurrency(target.value)}
-                  as={"select"}
-                  name="currency"
-                >
-                  {Object.keys(data.jsonData.rates).map((rate) => (
-                    <option key={rate} value={rate}>
-                      {rate}
-                    </option>
-                  ))}
-                </StyledInput>
-              </StyledLabel>
-            </p>
-            <Result result={result} />
-            <p>
-              <StyledButton>Przelicz</StyledButton>
-            </p>
-            <p>
-              <br />
-              Kursy pobrane z (
-              <Link
-                rel="noreferrer"
-                href="https://exchangerate.host/#/"
-                target="_blank"
+    <StyledContainer onSubmit={onFormSubmit}>
+      <StyledForm>
+        <StyledLegend>Kalkulator walut</StyledLegend>
+        <Clock />
+        {ratesData.status === "loading" ? (
+          <>
+            <Loading>Prosimy czekać, pobieramy aktualne kursy walut.</Loading>
+          </>
+        ) : ratesData.status === "error" ? (
+          <Error>
+            Coś poszło nie tak. Sprawdź swoje połączenie z internetem lub
+            spróbuj ponownie później.
+          </Error>
+        ) : (
+          <>
+            <StyledInput
+              type="number"
+              value={amount}
+              onChange={({ target }) =>
+                setAmount(target.value.slice(0, StyledInput_MAX_LENGTH))
+              }
+            />
+            <Select
+              value={StyledInputCurrency}
+              onChange={({ target }) => setStyledInputCurrency(target.value)}
+            >
+              {Object.keys(ratesData.rates).map((StyledInputCurrency) => (
+                <option value={StyledInputCurrency} key={StyledInputCurrency}>
+                  {StyledInputCurrency}
+                </option>
+              ))}
+            </Select>
+            <StyledOutput>
+              <Result result={result} />
+              <Select
+                value={outputCurrency}
+                onChange={({ target }) => setOutputCurrency(target.value)}
               >
-                API Europejskiego Banku Centralnego
-              </Link>
-              )
-            </p>
-          </StyledForm>
-        </>
-      )}
+                {Object.keys(ratesData.rates).map((outputCurrency) => (
+                  <option value={outputCurrency} key={outputCurrency}>
+                    {outputCurrency}
+                  </option>
+                ))}
+              </Select>
+            </StyledOutput>
+            <StyledButton>Przelicz</StyledButton>
+            <Information>
+              <p>Kursy walut na dzień {ratesData.date}.</p>
+            </Information>
+          </>
+        )}
+      </StyledForm>
     </StyledContainer>
   );
 };
