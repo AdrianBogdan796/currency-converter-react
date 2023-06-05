@@ -9,7 +9,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Javascript with React
 - Convention BEM
 
- Demo(https://adrianbogdan796.github.io/currency-converter-react/)
+## [DEMO](https://adrianbogdan796.github.io/currency-converter-react/)
 
 ![Zdjęcie](https://i.postimg.cc/TPCDtzvT/Zrzut-ekranu-2023-04-20-150301.png)
 
