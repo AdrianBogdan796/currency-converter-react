@@ -45,9 +45,10 @@ const StyledOutput = styled.div`
 
 const Select = styled.select`
   cursor: pointer;
-  border: none;
-  background: none;
-  padding: 0;
+  border: 1px solid black;
+  background: white;
+  padding: 0px;
+  border-radius: 5px;
 `;
 
 const StyledButton = styled.button`
